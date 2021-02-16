@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+    {% include head.html %}
+
+    <body>
+
+    {% if page.hero %}
+        {% include hero.html %}
+    {% else %}
+        {% include navbar.html %}
+    {% endif %}
+
+    {{ content }}
+
+    {% if page.layout == 'doc' %}
+        {% include offcanvas-docs.html %}
+    {% endif %}
+
+    {% if page.layout == 'project' %}
+        {% include offcanvas-projects.html %}
+    {% endif %}
+
+    {% include offcanvas.html %}
+
+    {% if page.layout != 'doc' and page.layout != 'project' %}
+        {% include footer.html %}
+    {% endif %}
+
+    {% if page.layout == 'doc' %}
+        {% include hook-pre-closing-body-doc.html %}
+    {% endif %}
+
+    {% if page.layout == 'project' %}
+        {% include hook-pre-closing-body-project.html %}
+    {% endif %}
+
+    {% include hook-pre-closing-body.html %}
+
+    </body>
+
+</html>

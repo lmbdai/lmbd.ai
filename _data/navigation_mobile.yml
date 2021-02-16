@@ -1,0 +1,20 @@
+# Mobile menu navigation links
+
+#- title: Home
+#  url: /
+
+- title: ML
+  url: /docs/mindmap/
+
+- title: Projects
+  url: /projects/about/
+
+- title: Blog
+  url: /blog/
+
+#- title: Changelog
+#  url: /changelog-timeline/
+
+- title: Contact
+  url: /contact/
+  button: success

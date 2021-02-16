@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Lasso, Ridge &amp; Elastic Net | ML Cookbook</title>
+<meta name="generator" content="Jekyll v3.6.3" />
+<meta property="og:title" content="Lasso, Ridge &amp; Elastic Net" />
+<meta name="author" content="victor" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="1. Introduction to Lasso Regularization Term (L1)" />
+<meta property="og:description" content="1. Introduction to Lasso Regularization Term (L1)" />
+<link rel="canonical" href="http://localhost:4000/docs/reg_lasso_ridge_elastic/" />
+<meta property="og:url" content="http://localhost:4000/docs/reg_lasso_ridge_elastic/" />
+<meta property="og:site_name" content="ML Cookbook" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-02-14T20:18:58+05:30" />
+<script type="application/ld+json">
+{"description":"1. Introduction to Lasso Regularization Term (L1)","author":{"@type":"Person","name":"victor"},"@type":"BlogPosting","url":"http://localhost:4000/docs/reg_lasso_ridge_elastic/","headline":"Lasso, Ridge &amp; Elastic Net","dateModified":"2020-02-14T20:18:58+05:30","datePublished":"2020-02-14T20:18:58+05:30","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/docs/reg_lasso_ridge_elastic/"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <meta property="og:image" content="http://localhost:4000/uploads/"/>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="shortcut icon" type="image/png" href="/uploads/favicon.png" >
+  <link rel="alternate" type="application/rss+xml" title="ML Cookbook" href="/feed.xml">
+  <script type="text/javascript" src="//cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+  
+    <script>
+function searchResults(form) {
+
+    var currentItem = null;
+    var search = document.getElementById(form);
+    var results = document.getElementById(form + "-results");
+    var toggle = document.getElementById(form + "-toggle");
+
+    function removeActive() {
+        for (i = 0; i < results.children.length; i++) {
+            results.children[i].classList.remove("uk-background-muted");
+        }
+    }
+
+    // Detect all clicks on the document
+    document.addEventListener("click", function(event) {
+
+        var isClickSearch = false;
+        var isClickResults = false;
+        var isClickSearchToggle = false;
+
+        if (search !== null) {
+            isClickSearch = search.contains(event.target);
+        }
+
+        if (results !== null) {
+            isClickResults = results.contains(event.target);
+        }
+
+        if (toggle !== null) {
+            isClickSearchToggle = toggle.contains(event.target);
+        }
+
+        if (isClickSearch || isClickSearchToggle) {
+            results.style.display = "block";
+        }        
+
+        if (!isClickResults && !isClickSearch && !isClickSearchToggle) {
+            results.style.display = "none";
+        }        
+        
+    });    
+
+    results.addEventListener("mouseover", function(event) {
+
+        removeActive();
+        event.target.parentElement.classList.add("uk-background-muted");
+        currentItem = null;
+
+    });
+
+    results.addEventListener("mouseout", function(event) {
+        event.target.parentElement.classList.remove("uk-background-muted");
+    });
+
+
+    search.addEventListener("keyup", function(event) {
+
+        var resultItems = results.children;
+        var resultCount = results.children.length;
+                                
+        if (event.keyCode === 40) {
+
+            if (currentItem < (resultCount - 1)) {
+                if (currentItem === null) {
+                    currentItem = 0;
+                } else {
+                    removeActive();
+                    currentItem++;
+                }
+                removeActive();
+                resultItems[currentItem].classList.add("uk-background-muted");
+            }
+            
+        } else if (event.keyCode === 38) {
+
+            if (currentItem > 0) {
+                if (currentItem === null) {
+                    currentItem = 0;
+                } else {
+                    removeActive();
+                    currentItem--;
+                }
+                removeActive();
+                resultItems[currentItem].classList.add("uk-background-muted");
+            }
+
+        } else if (event.keyCode === 13) {
+
+            resultItems[currentItem].children[0].click();
+
+        }
+
+    });
+
+}
+</script>
+  
+  
+  
+</head>
+
+    <body>
+
+    
+        
+<div  data-uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent; top: 200">
+    <nav class="uk-navbar-container">
+        <div class="uk-container">
+            <div data-uk-navbar>
+                <div class="uk-navbar-left">
+                    <a class="uk-navbar-item uk-logo uk-visible@m" href="/">ML Cookbook</a>
+                    
+                        <a class="uk-navbar-toggle uk-hidden@m" href="#offcanvas-docs" data-uk-navbar-toggle-icon data-uk-toggle></a>
+                    
+
+                    <ul class="uk-navbar-nav uk-visible@m">
+                        
+                            
+                            
+                            
+                                
+                                    
+                                        <li><a href="/docs/mindmap/" >ML</a></li>
+                                    
+                                
+                            
+                        
+                            
+                            
+                            
+                                
+                                    
+                                        <li><a href="/blog/" >Blog</a></li>
+                                    
+                                
+                            
+                        
+                    </ul>
+                </div>
+                <div class="uk-navbar-center uk-hidden@m">
+                    <a class="uk-navbar-item uk-logo" href="/">ML Cookbook</a>
+                </div>
+                <div class="uk-navbar-right">
+                    
+                        
+                            <div>
+                                <a id="search-navbar-toggle" class="uk-navbar-toggle" uk-search-icon href="#"></a>
+                                <div class="uk-drop uk-background-default uk-border-rounded" uk-drop="mode: click; pos: left-center; offset: 0">
+                                    <form class="uk-search uk-search-navbar uk-width-1-1" onsubmit="return false;">
+                                        <input id="search-navbar" class="uk-search-input" type="search" placeholder="Search for answers" autofocus autocomplete="off">
+                                    </form>
+                                    <ul id="search-navbar-results" class="uk-position-absolute uk-width-1-1 uk-list"></ul>
+                                </div>
+                            </div>
+                            <script>
+                            SimpleJekyllSearch({
+                                searchInput: document.getElementById('search-navbar'),
+                                resultsContainer: document.getElementById('search-navbar-results'),
+                                noResultsText: '<li class="no-results">No results found</li>',
+                                searchResultTemplate: '<li><a href="{url}">{title}</a></li>',
+                                json: '/search.json'
+                            });
+                            searchResults("search-navbar");
+                            </script>
+                        
+                    
+
+                    <ul class="uk-navbar-nav uk-visible@m">
+                        
+                            
+                            
+                            
+                                
+                                    <li><div class="uk-navbar-item"><a class="uk-button uk-button-primary-outline" href="/projects/about/" >Projects</a></div></li>
+                                
+                            
+                        
+                            
+                            
+                            
+                                
+                                    <li><div class="uk-navbar-item"><a class="uk-button uk-button-success" href="/contact/" >Contact</a></div></li>
+                                
+                            
+                        
+                    </ul>
+
+                    <a class="uk-navbar-toggle uk-hidden@m" href="#offcanvas" data-uk-navbar-toggle-icon data-uk-toggle></a>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
+    
+
+    <div class="uk-section">
+    <div class="uk-container">
+        <div class="uk-grid-large" data-uk-grid>
+
+            <div class="sidebar-fixed-width uk-visible@m">
+                <div class="sidebar-docs uk-position-fixed uk-margin-top">
+                    
+                    <h5>Getting Started</h5>
+                    <ul class="uk-nav uk-nav-default doc-nav">
+                    
+                      
+                      
+                      <li class=""><a href="/docs/mindmap/">ML Mind Map</a></li>
+                    
+                    </ul>
+                    
+                    <h5>Regression</h5>
+                    <ul class="uk-nav uk-nav-default doc-nav">
+                    
+                      
+                      
+                      <li class=""><a href="/docs/reg_multi/">Multivariate Regression</a></li>
+                    
+                    </ul>
+                    
+                    <h5>Classification</h5>
+                    <ul class="uk-nav uk-nav-default doc-nav">
+                    
+                      
+                      
+                      <li class=""><a href="/docs/cl_lr/">Logistic Regression</a></li>
+                    
+                      
+                      
+                      <li class=""><a href="/docs/cl_rf/">Random Forest</a></li>
+                    
+                      
+                      
+                      <li class=""><a href="/docs/cl_dt_id3/">Decision Tree (ID3)</a></li>
+                    
+                      
+                      
+                      <li class=""><a href="/docs/cl_dt_cart/">Decision Tree (CART)</a></li>
+                    
+                    </ul>
+                    
+                    <h5>Clustering</h5>
+                    <ul class="uk-nav uk-nav-default doc-nav">
+                    
+                    </ul>
+                    
+                </div>
+            </div>
+
+            <div class="uk-width-1-1 uk-width-expand@m docs-container">
+
+                <article class="uk-article">
+
+                    <h1 class="uk-article-title">Lasso, Ridge &amp; Elastic Net</h1>
+
+                    <p class="uk-text-lead uk-text-muted">This document will cover something cool.</p>
+
+                    <div class="uk-article-meta uk-margin-top uk-margin-medium-bottom uk-flex uk-flex-middle">
+                        
+
+
+  
+  <img class="uk-border-circle avatar" src="http://localhost:4000/uploads/victor.jpeg" alt="Victor Popov">
+
+
+<div>
+  
+    Written by <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Victor Popov</span></span><br>
+  
+  <time datetime="2020-02-14T20:18:58+05:30" itemprop="datePublished">
+    
+    Feb 14, 2020
+  </time>
+</div>
+                    </div>
+
+                    <div class="article-content link-primary">
+                        <h1 id="1-introduction-to-lasso-regularization-term-l1">1. Introduction to Lasso Regularization Term (L1)</h1>
+
+<p>LASSO - Least Absolute Shrinkage and Selection Operator - was first formulated by Robert Tibshirani in 1996. It is a powerful method that performs two main tasks: regularization and feature selection.</p>
+
+<p>Let’s look at the example of lasso regularization with linear models, where OLS method is used with its regularization term.</p>
+
+<p align="center">
+    <img src="/uploads/doc/regression/lasso_1.png" height="400" width="400" />
+</p>
+
+<p>The LASSO method puts a constraint on the sum of the absolute values of the model parameters, the sum has to be less than a fixed value (upper bound, or <script type="math/tex">t</script>):</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\sum^{k}_{j=1} |\beta_j|<t %]]></script>
+
+<p>–where t is the upper bound for the sum of the coefficients.</p>
+
+<p>In order to do so, the method applies a shrinking (regularization) process where it penalizes the coefficients of the regression variables shrinking some of them to zero. During features selection process the variables that still have a non-zero coefficient after the shrinking process are selected to be part of the model. The goal of this process is to minimize the prediction error.</p>
+
+<h1 id="2-parameter-alpha-alpha">2. Parameter alpha (<script type="math/tex">\alpha</script>)</h1>
+<p>In practice, the tuning parameter α that controls the strength of the penalty assumes great importance. Indeed, when α is sufficiently large, coefficients are forced to be exactly equal to zero. This way, dimensionality can be reduced. The larger the parameter α, the more the number of coefficients are shrunk to zero. On the other hand, if α = 0, we have just an OLS (Ordinary Least Squares) regression.</p>
+
+<h1 id="3-advantages">3. Advantages</h1>
+
+<p>There are many advantages of using the LASSO method.</p>
+<ul>
+  <li>First of all, it can provide a very good prediction accuracy, because shrinking and removing the coefficients can reduce variance without a substantial increase of the bias, this is especially useful when you have a small number of observation and a large number of features. In terms of the tuning parameter α we know that bias increases and variance decreases when α increases, indeed a trade-off between bias and variance has to be found.</li>
+  <li>Moreover, the LASSO helps to increase the model interpretability by eliminating irrelevant variables that are not associated with the response variable, this way also overfitting is reduced. This is the point where we are more interested in because in this paper the focus is on the feature selection task.</li>
+</ul>
+
+<h1 id="4-introduction-to-lasso-regression">4. Introduction to Lasso Regression</h1>
+
+<p>Lasso with linear models is called Lasso Regression. It is the model that describes the relationship between response variable Y and explanatory variables X. In the case of one explanatory variable, Lasso Regression is called Simple Lasso Regression while the case with two or more explanatory variables is called Multiple Lasso Regression.</p>
+
+<p>Lasso Regression holds all the assumptions of the Linear Regression, such as:</p>
+<ul>
+  <li>The response variable is normally distributed</li>
+  <li>There is a linear relationship between the response variable and the explanatory variables</li>
+  <li>The random errors are normally distributed, have constant (equal) variances at any point in X, and are independent</li>
+</ul>
+
+<p>To read more about Linear Regression assumptions, go to <a href="https://en.wikipedia.org/wiki/Linear_regression">Linear Regression</a>.</p>
+
+<h1 id="5-the-model">5. The Model</h1>
+
+<p>The LASSO minimizes the sum of squared errors, with an upper bound on the sum of the absolute values of the model parameters. The lasso estimate is defined by the solution to the L1 optimization problem:</p>
+
+
+                        
+                            <div class="share uk-text-center uk-margin-medium-top">
+    
+        <a class="uk-link-muted" href="https://twitter.com/intent/tweet?text=Lasso, Ridge & Elastic Net&url=http://localhost:4000/docs/reg_lasso_ridge_elastic/&via=&related=" rel="nofollow" target="_blank" title="Share on Twitter" onclick="window.open(this.href, 'twitter', 'width=550,height=235');return false;"><span data-uk-icon="icon: twitter; ratio: 1.2"></span></a>
+    
+    
+        <a class="uk-link-muted uk-margin-small-left" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fdocs%2Freg_lasso_ridge_elastic%2F" rel="nofollow" target="_blank" title="Share on Facebook" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;"><span data-uk-icon="icon: facebook; ratio: 1.2"></span></a>
+    
+</div>
+
+                        
+                    </div>
+
+                    
+
+                    <hr class="uk-margin-medium">
+
+                    
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+
+
+                    <div class="uk-margin-large-top">
+    <h3>Related Docs</h3>
+
+    
+    
+    
+
+    <ul class="uk-list link-secondary">
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+        <li><a href="/docs/cl_nb/">Naive Bayes Classifier</a></li>
+        
+        
+    
+
+    
+
+    
+    
+
+    
+
+    
+        <li><a href="/docs/cl_rf/">Random Forest</a></li>
+        
+        
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+        <li><a href="/docs/reg_multi/">Multivariate Regression</a></li>
+        
+        
+    
+
+    
+
+    
+    
+
+    
+
+    
+        <li><a href="/docs/reg_nb/">Naive Bayes Regressor</a></li>
+        
+        
+            
+    </ul>
+</div>
+
+
+                    
+                        
+
+                    
+
+                    
+                </article>
+
+                <script>
+                    // Table of contents scroll to
+                    UIkit.scroll('#markdown-toc a', {
+                        duration: 400,
+                        offset: 120
+                    });
+                </script>
+                <!-- Mathjax Support -->
+                <script type="text/javascript" async
+                        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+                </script>
+            </div>
+
+    </div>
+</div>
+
+
+    
+        <div id="offcanvas-docs" data-uk-offcanvas="overlay: true">
+    <div class="uk-offcanvas-bar">
+
+        <button class="uk-offcanvas-close" type="button" data-uk-close></button>
+
+        
+        <h5 class="uk-margin-top">Getting Started</h5>
+        <ul class="uk-nav uk-nav-default doc-nav">
+        
+          
+          
+          <li class=""><a href="/docs/mindmap/">ML Mind Map</a></li>
+        
+        </ul>
+        
+        <h5 class="uk-margin-top">Regression</h5>
+        <ul class="uk-nav uk-nav-default doc-nav">
+        
+          
+          
+          <li class=""><a href="/docs/reg_multi/">Multivariate Regression</a></li>
+        
+        </ul>
+        
+        <h5 class="uk-margin-top">Classification</h5>
+        <ul class="uk-nav uk-nav-default doc-nav">
+        
+          
+          
+          <li class=""><a href="/docs/cl_lr/">Logistic Regression</a></li>
+        
+          
+          
+          <li class=""><a href="/docs/cl_rf/">Random Forest</a></li>
+        
+          
+          
+          <li class=""><a href="/docs/cl_dt_id3/">Decision Tree (ID3)</a></li>
+        
+          
+          
+          <li class=""><a href="/docs/cl_dt_cart/">Decision Tree (CART)</a></li>
+        
+        </ul>
+        
+        <h5 class="uk-margin-top">Clustering</h5>
+        <ul class="uk-nav uk-nav-default doc-nav">
+        
+        </ul>
+        
+
+    </div>
+</div>
+
+    
+
+    
+
+    <div id="offcanvas" data-uk-offcanvas="flip: true; overlay: true">
+    <div class="uk-offcanvas-bar">
+
+        <a class="uk-logo uk-margin-small-bottom" href="/">ML Cookbook</a>
+     
+        <button class="uk-offcanvas-close" type="button" data-uk-close></button>
+      
+        <ul class="uk-nav uk-nav-primary uk-margin-top">
+            
+                
+
+                
+
+                
+                    <li><a href="/docs/mindmap/" >ML</a></li>
+                
+            
+                
+
+                
+
+                
+                    <li><a href="/projects/about/" >Projects</a></li>
+                
+            
+                
+
+                
+
+                
+                    <li><a href="/blog/" >Blog</a></li>
+                
+            
+                
+
+                
+
+                
+                    <li><div class="uk-navbar-item"><a class="uk-button uk-button-success" href="/contact/" >Contact</a></div></li>
+                
+            
+        </ul>
+
+        <div class="uk-margin-top uk-text-center">
+            <div data-uk-grid class="uk-child-width-auto uk-grid-small uk-flex-center uk-grid">
+                
+
+<div>
+    <a href="https://www.facebook.com/thelearningm" data-uk-icon="icon: facebook" class="uk-icon-link uk-icon" target="_blank"></a>
+</div>
+
+
+
+
+<div>
+    <a href="https://www.instagram.com/thelearningm" data-uk-icon="icon: instagram" class="uk-icon-link uk-icon" target="_blank"></a>
+</div>
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+    
+
+    
+        
+    
+
+    
+
+    
+
+    </body>
+
+</html>

@@ -1,0 +1,176 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+// System fonts
+@import "system-font-css/_system-font";
+
+// Custom variables and variable overwrites.
+@import "theme/variables";
+
+// Import default variables and available mixins.
+@import "uikit/variables-theme";
+@import "uikit/mixins-theme";
+
+// Custom mixin overwrites.
+@import "theme/mixins";
+
+// Import UIkit.
+@import "theme/uikit";
+
+// Other vendor styles
+// @import "syntax-highlighting/cld";
+@import "syntax-highlighting/bw";
+
+canvas {
+  display: block;
+}
+
+#particles-js {
+	background: transparent;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: -2;
+}
+
+.tags-link {
+  color: #15CB9D;
+  font-size: 1.5rem;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .sidebar-fixed-width {
+    width: 220px;
+
+    .sidebar-docs {
+      padding-right: 0px;
+      width: 220px;
+    }
+  }
+
+  .docs-container {
+    padding-left: 40px;
+  }
+}
+
+#docs-chart {
+  margin: 5px;
+  color: #ffffff;
+  font-weight: bold;
+
+  .chart-heading {
+    background-color: #000000;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .chart {
+    flex-direction: row;
+    text-align: center;
+
+    div, a {
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0px;
+      }
+    }
+
+    .chart-sub-categories {
+      &-title {
+        background-color: #206652;
+        border-radius: 10px;
+        color: inherit;
+        display: block;
+        padding: 28px;
+
+        &:hover {
+          background-color: #195141;
+        }
+      }
+
+      &-subclass {
+        flex-direction: row;
+
+        &-box {
+          &-title {
+            background-color: #45dcaf;
+            border-radius: 8px;
+            color: inherit;
+            display: block;
+            padding: 15px;
+
+            &:hover {
+              background-color: #4ac29e;
+            }
+          }
+
+          &:nth-child(1) {
+            margin-right: 5px;
+          }
+
+          &:nth-child(2) {
+            margin-left: 5px;
+          }
+
+          &-doc {
+            background-color: #e6e6e6;
+            border-radius: 5px;
+            display: block;
+            font-weight: normal;
+            padding: 4px;
+            border-bottom: 0;
+            color: #000000;
+            text-decoration: none;
+
+            &:hover {
+              background-color: #c4c4c4;
+            }
+
+            &.disabled {
+              pointer-events: hover;
+              cursor: not-allowed;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media(min-width: 480px) {
+    .chart-sub-categories {
+      &-subclass {
+        display: flex;
+
+        &-box {
+          flex: 1;
+        }
+      }
+    }
+  }
+
+  @media(min-width: 940px) {
+    .chart {
+      display: flex;
+
+      .chart-sub-categories {
+        flex: 1;
+
+        &:nth-child(1) {
+          margin-right: 5px;
+        }
+        &:nth-child(2) {
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,119 @@
+[
+  
+    {
+      "title"    : "Decision Tree (CART)",
+      "category" : "",
+      "tags"     : "mlmindmap",
+      "url"      : "/docs/cl_dt_cart/",
+      "date"     : "2020-02-14 20:18:58 +0530"
+    } ,
+  
+    {
+      "title"    : "Decision Tree (ID3)",
+      "category" : "",
+      "tags"     : "mlmindmap",
+      "url"      : "/docs/cl_dt_id3/",
+      "date"     : "2020-02-14 20:18:58 +0530"
+    } ,
+  
+    {
+      "title"    : "Logistic Regression",
+      "category" : "",
+      "tags"     : "naive",
+      "url"      : "/docs/cl_lr/",
+      "date"     : "2020-02-14 20:18:58 +0530"
+    } ,
+  
+    {
+      "title"    : "Naive Bayes Classifier",
+      "category" : "",
+      "tags"     : "featured",
+      "url"      : "/docs/cl_nb/",
+      "date"     : "2020-02-14 20:18:58 +0530"
+    } ,
+  
+    {
+      "title"    : "Random Forest",
+      "category" : "",
+      "tags"     : "featured",
+      "url"      : "/docs/cl_rf/",
+      "date"     : "2020-02-14 20:18:58 +0530"
+    } ,
+  
+    {
+      "title"    : "EXAMPLE IS HERE!",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/docs/example/",
+      "date"     : "2020-02-14 20:18:58 +0530"
+    } ,
+  
+    {
+      "title"    : "ML Mind Map",
+      "category" : "",
+      "tags"     : "how-to-start",
+      "url"      : "/docs/mindmap/",
+      "date"     : "2020-02-14 20:18:58 +0530"
+    } ,
+  
+    {
+      "title"    : "Lasso, Ridge &amp; Elastic Net",
+      "category" : "",
+      "tags"     : "featured",
+      "url"      : "/docs/reg_lasso_ridge_elastic/",
+      "date"     : "2020-02-14 20:18:58 +0530"
+    } ,
+  
+    {
+      "title"    : "Multivariate Regression",
+      "category" : "",
+      "tags"     : "featured",
+      "url"      : "/docs/reg_multi/",
+      "date"     : "2020-02-14 20:18:58 +0530"
+    } ,
+  
+    {
+      "title"    : "Naive Bayes Regressor",
+      "category" : "",
+      "tags"     : "featured",
+      "url"      : "/docs/reg_nb/",
+      "date"     : "2020-02-14 20:18:58 +0530"
+    } 
+  
+  
+  ,
+  
+  
+  {
+  "title"    : "About",
+  "category" : "",
+  "tags"     : "",
+  "url"      : "/projects/about/",
+  "date"     : "2020-02-14 20:18:58 +0530"
+  } ,
+  
+  {
+  "title"    : "Blood Sugar Prediction",
+  "category" : "",
+  "tags"     : "projects, classification",
+  "url"      : "/projects/blood-sugar-prediction/",
+  "date"     : "2020-02-14 20:18:58 +0530"
+  } ,
+  
+  {
+  "title"    : "Car Price Prediction",
+  "category" : "",
+  "tags"     : "projects, regression",
+  "url"      : "/projects/car-price-prediction/",
+  "date"     : "2020-02-14 20:18:58 +0530"
+  } ,
+  
+  {
+  "title"    : "Heart Disease Prediction",
+  "category" : "",
+  "tags"     : "projects, classification",
+  "url"      : "/projects/heart-disease-prediction/",
+  "date"     : "2020-02-14 20:18:58 +0530"
+  } 
+  
+]
