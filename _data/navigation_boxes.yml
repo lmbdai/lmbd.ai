@@ -1,19 +1,16 @@
 # Boxes include navigation
 
 - title: Getting Started
-  desc: Don't know where to start? Start here
+  desc: Get started fast with installation and theme setup instructions
   icon: cog
-  doc: mindmap
-  url: /docs/mindmap
+  doc: installation
 
-- title: ML Projects
-  desc: Start with real projects we've prepped for you to excel your Python skills
+- title: Theme Features
+  desc: Lean about all the theme options, features and how to use them
+  icon: settings
+  doc: hero
+
+- title: Customization
+  desc: Get help or tailor the theme to your specific requirements
   icon: code
-  project: about
-  url: /projects/about
-
-- title: Blog
-  desc: Read our blog, we publish some cool stuff you might want to learn about!
-  icon: album
-  url: /blog/
-  blog:
+  doc: customize

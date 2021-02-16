@@ -5,8 +5,8 @@
 # 'bundle exec jekyll serve'. If you change this file, please restart the server process.
 
 # Site title and description
-title:              ML Cookbook
-description:        ML Cookbook
+title:              Docs
+description:        Documentation Jekyll theme.
 lang:               en
 
 # Site subpath, e.g. /blog
@@ -16,82 +16,78 @@ baseurl:            ""
 permalink:          /:title/
 
 # Site base hostname & protocol, e.g. http://example.com
-url:                "https://ml-book.com"
+url:                "https://docs.jekyll.plus"
 
 # Site logo # e.g. logo.png, upload logo image file to /uploads/ folder
-logo:
+logo:               
 
 navbar:
     sticky:         true
     search:         true
-
+  
 # Default author settings
 author:
-    name:           Andrew Wolf
-    title:          Founder
-    avatar:         andrew.jpeg
+    name:           Pete Seth
+    title:          Lead Developer  
+    avatar:         avatar-tom.png
 
 # Author settings, displayed on post and doc pages if front matter references author name e.g. author: peter
 authors:
-    victor:
-      name:         Victor Popov
-      title:        Applied ML Lead
-      avatar:       victor.jpeg
-    gwena:
-      name:         Gwena Cunha
-      title:        NLP Lead
-      avatar:       gwena.jpg
-    rex:
-      name:         Rex Cheung
-      title:        Statistics Lead
-      avatar:       rex.png
-    kirill:
-      name:         Kirill Zaznobin
-      title:        Development Lead
-      avatar:       kirill.jpeg
-    andrew:
-      name:         Andrew Wolf
-      title:        Founder
-      avatar:       andrew.jpeg
-    shu:
-      name:         Shu Lee
-      title:        ML - Regressions
-      avatar:       shu.jpg
+    john:
+      name:         John Brown
+      title:        Support     
+      avatar:       avatar-john.png
+    evan:
+      name:         Evan Wells
+      title:        Support    
+      avatar:       avatar-evan.png
+    sara:
+      name:         Sara Galen
+      title:        Lead Developer     
+      avatar:       avatar-sara.png
+    alex:
+      name:         Alex Koch
+      title:        Design Engineer     
+      avatar:       avatar-alex.png
+    daniel:
+      name:         Daniel Shultz
+      title:        Developer      
+      avatar:       avatar-daniel.png
+    tom:
+      name:         Tom Farrell
+      title:        Developer     
+      avatar:       avatar-tom.png
 
 # Social icons displayed in footer
 social:
     email:
     website:
-    facebook:       https://www.facebook.com/thelearningm
+    facebook:       https://www.facebook.com/
     flickr:
     dribbble:
     github:
     googleplus:
-    instagram:      https://www.instagram.com/thelearningm
+    instagram:      https://www.instagram.com/
     linkedin:
     pinterest:
-    twitter:
-    vimeo:
+    twitter:        https://twitter.com/
+    vimeo:          https://vimeo.com/
     youtube:
 
 # Share button
 share:
     post:           true # Display share buttons on a post page
     doc:            true # Display share buttons on a doc page
-    twitter:        username # Enable by adding Twitter handle
+    twitter:        username # Enable by adding Twitter handle 
     facebook:       true # Enable by setting true (Facebook handle not required)
 
 # Default footer image settings
 footer:
-    copyright:      Made by a <a href="https://5x12.github.io/">human</a> somewhere on the planet earth.
+    copyright:      Made by a <a href="https://ivanchromjak.com/">human</a> somewhere on the planet earth.
 
 # Disqus comments shortname, requires Disqus account https://disqus.com/
 disqus:
     shortname:      # 1234
-
-# Check to enable Commento comments on the site.
-commento:
-    enabled:        true
 
 # Google analytics code, get your code here https://www.google.com/analytics/
 google_analytics:
@@ -109,12 +105,11 @@ uploads:            /uploads/
 markdown:           kramdown
 highlighter:        rouge
 
-plugins:
+gems:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-gist
   - jekyll-avatar
-
 exclude:
   - Gemfile
   - Gemfile.lock
@@ -130,10 +125,6 @@ collections:
     output:         false
   changelogs:
     output:         false
-  projects:
-    output:         true
-  tags:
-    output:         true
 
 # Defaults
 defaults:
@@ -149,11 +140,3 @@ defaults:
       type:         docs
     values:
       layout:       doc
-  # _projects
-  - scope:
-      path:         ""
-      type:         projects
-    values:
-      layout:       project
-
-

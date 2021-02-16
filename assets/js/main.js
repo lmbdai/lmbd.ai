@@ -1,21 +1,5 @@
-window.onload = () => {
-    if (window.location.pathname ==  "/")  {
-        particlesJS.load('particles-js', 'particles.json');
-    }
-
-    var userSelection = document.getElementsByClassName('section-heading');
-
-    for (let i = 0; i < userSelection.length; i++) {
-        userSelection[i].addEventListener("click", function (event) {
-            window.setTimeout(() => {
-                window.scrollBy(0, -80);
-            }, 10);
-        })
-    }
-}
-
 (function(global, factory) {
-    typeof exports === "object" && typeof module !== "undefined" ? module.exports = factory() : typeof define === "function" && define.amd ? define("uikit", factory) : (global = global || self,
+    typeof exports === "object" && typeof module !== "undefined" ? module.exports = factory() : typeof define === "function" && define.amd ? define("uikit", factory) : (global = global || self, 
     global.UIkit = factory());
 })(this, function() {
     "use strict";
@@ -194,7 +178,7 @@ window.onload = () => {
         ratio: function(dimensions, prop, value) {
             var obj;
             var aProp = prop === "width" ? "height" : "width";
-            return obj = {}, obj[aProp] = dimensions[prop] ? Math.round(value * dimensions[aProp] / dimensions[prop]) : dimensions[aProp],
+            return obj = {}, obj[aProp] = dimensions[prop] ? Math.round(value * dimensions[aProp] / dimensions[prop]) : dimensions[aProp], 
             obj[prop] = value, obj;
         },
         contain: function(dimensions, maxDimensions) {
@@ -1625,7 +1609,7 @@ window.onload = () => {
         var obj;
         if (args === void 0) args = [];
         try {
-            return !options ? {} : startsWith(options, "{") ? JSON.parse(options) : args.length && !includes(options, ":") ? (obj = {},
+            return !options ? {} : startsWith(options, "{") ? JSON.parse(options) : args.length && !includes(options, ":") ? (obj = {}, 
             obj[args[0]] = options, obj) : options.split(";").reduce(function(options, option) {
                 var ref = option.split(/:(.*)/);
                 var key = ref[0];
@@ -8667,7 +8651,7 @@ window.onload = () => {
 });
 
 (function(global, factory) {
-    typeof exports === "object" && typeof module !== "undefined" ? module.exports = factory() : typeof define === "function" && define.amd ? define("uikiticons", factory) : (global = global || self,
+    typeof exports === "object" && typeof module !== "undefined" ? module.exports = factory() : typeof define === "function" && define.amd ? define("uikiticons", factory) : (global = global || self, 
     global.UIkitIcons = factory());
 })(this, function() {
     "use strict";

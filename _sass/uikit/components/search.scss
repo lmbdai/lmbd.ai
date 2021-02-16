@@ -218,27 +218,7 @@ $search-toggle-hover-color:                          $global-color !default;
 /* Navbar modifier
  ========================================================================== */
 
-.uk-navbar-container .uk-search-navbar { width: $search-navbar-width; }
-
-.uk-navbar-container {
-    @media (max-width: $breakpoint-xsmall-max) {
-        .uk-search-navbar {
-            max-width: 220px;
-            float: right;
-        }
-
-        #search-navbar-results {
-            max-width: 220px;
-            right: 0;
-            top: 40px
-        }
-
-        .uk-search-icon {
-            padding-right: 0;
-            padding-left: 0;
-        }
-    }
-}
+.uk-search-navbar { width: $search-navbar-width; }
 
 /*
  * Input

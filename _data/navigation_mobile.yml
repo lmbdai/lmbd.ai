@@ -1,19 +1,16 @@
 # Mobile menu navigation links
 
-#- title: Home
-#  url: /
+- title: Home
+  url: /
 
-- title: ML
-  url: /docs/mindmap/
-
-- title: Projects
-  url: /projects/about/
+- title: Docs
+  url: /docs/installation/
 
 - title: Blog
   url: /blog/
 
-#- title: Changelog
-#  url: /changelog-timeline/
+- title: Changelog
+  url: /changelog-timeline/
 
 - title: Contact
   url: /contact/

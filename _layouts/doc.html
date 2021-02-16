@@ -21,7 +21,7 @@ layout: default
                 </div>
             </div>
 
-            <div class="uk-width-1-1 uk-width-expand@m docs-container">
+            <div class="uk-width-1-1 uk-width-expand@m">
 
                 <article class="uk-article">
 
@@ -48,10 +48,6 @@ layout: default
 
                     {% include related-docs.html %}
 
-                    {% if site.commento.enabled %}
-                        {% include commento_comments.html %}
-                    {% endif %}
-
                     {% if site.disqus.shortname %}
                         {% include disqus_comments.html %}
                     {% endif %}
@@ -64,10 +60,7 @@ layout: default
                         offset: 120
                     });
                 </script>
-                <!-- Mathjax Support -->
-                <script type="text/javascript" async
-                        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-                </script>
+
             </div>
 
     </div>
