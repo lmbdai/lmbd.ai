@@ -1,18 +1,24 @@
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  {% seo %}
-  <meta property="og:image" content="{% if site.logo contains 'http' %}{{ site.logo }}{% else %}{{ site.uploads | absolute_url }}{{ site.logo }}{% endif %}"/>
-  <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
-  <link rel="shortcut icon" type="image/png" href="{{ "uploads/favicon.png" | relative_url }}" >
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ "/feed.xml" | relative_url }}">
-  <script src="{{ "/assets/js/main.js" | relative_url }}"></script>
-  {% if page.hero.search or site.navbar.search %}
-    {% include search-js.html %}
-  {% endif %}
-  {% include hook-head.html %}
-  {% if jekyll.environment == 'production' and site.google_analytics %}
-    {% include google-analytics.html %}
-  {% endif %}
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/favicon.png">
+
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,600,700" rel="stylesheet">
+    <!-- ===========================================
+		CSS
+	============================================= -->
+    <link rel="stylesheet" href="{{ 'css/linearicons.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ 'css/font-awesome.min.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ 'css/bootstrap.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ 'css/magnific-popup.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ 'css/nice-select.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ 'css/animate.min.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ 'css/owl.carousel.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ 'css/main.css' | relative_url }}">
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>

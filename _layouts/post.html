@@ -1,42 +1,59 @@
 ---
-layout: default
+layout: blog
 ---
 
-<div class="uk-section">
-    <div class="uk-container uk-container-xsmall">
-        <article class="uk-article">
+{% include hero/blog_details.html %}
+    <!-- Start main body contents -->
+    <section class="blog-post section-gap">
+        <div class="details-body">
+            <div class="container">
+                <h2 class="head">{{ page.title | escape }}</h2>
 
-            <h1 class="uk-article-title">{{ page.title | escape }}</h1>
-
-            <div class="uk-article-meta uk-margin-top uk-margin-medium-bottom uk-flex uk-flex-middle">
-                {% include post-meta.html %}
-            </div>
-
-            <div class="article-content link-primary">
                 {{ content }}
-                {% if site.share.post %}
-                    {% include share.html %}
-                {% endif %}
+
+                <div class="mt-40 mb-20">
+                    <hr>
+                </div>
+
+                <div class="post-links">
+                    <div class="d-flex align-items-center justify-content-between">
+                       {% if page.previous.url %} 
+                        <div class="prev-post d-flex relative align-items-center">
+                            <div>
+                                <a class="post-link" href="{{page.previous.url}}">
+                                    <i class="fas fa-arrow-left"></i>
+                                </a>
+                            </div>
+                            <div class="ml-3 relative">
+                                <p class="mb-0">Next post</p>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if page.next.url %}
+                        <div class="next-post d-flex relative align-items-center">
+                            <div class="mr-3 relative">
+                                <p class="mb-0">Next post</p>
+                            </div>
+                            <div class="">
+                                <a class="post-link" href="{{page.next.url}}">
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+
+                <div class="comment-section">
+                    <h4 class="comment-head">
+                      {%- if site.disqus.shortname -%}
+					    {%- include disqus_comments.html -%}
+					  {%- endif -%}
+                </div>
+
+       
             </div>
-
-            <hr class="uk-margin-medium">
-
-            {% include paginate-post.html %}
-
-            {% include related-posts.html %}
-
-            {% if site.disqus.shortname %}
-                {% include disqus_comments.html %}
-            {% endif %}
-        </article>
-
-        <script>
-            // Table of contents scroll to
-            UIkit.scroll('#markdown-toc a', {
-                duration: 400,
-                offset: 120
-            });
-        </script>
-
-    </div>
-</div>
+        </div>
+    </section>
+    <!-- End main body contents -->
